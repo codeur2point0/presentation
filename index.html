@@ -11,7 +11,6 @@
       box-sizing: border-box;
     }
 
-    
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #000;
@@ -19,6 +18,19 @@
       width: 100vw;
       overflow: hidden;
       position: relative;
+    }
+
+    .section {
+      display: none;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .section.active {
+      display: block;
     }
 
     .slide {
@@ -38,12 +50,8 @@
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .slide-image {
@@ -78,13 +86,8 @@
       background: rgba(255, 255, 255, 0.2);
     }
 
-    #prevBtn {
-      left: 0;
-    }
-
-    #nextBtn {
-      right: 0;
-    }
+    #prevBtn { left: 0; }
+    #nextBtn { right: 0; }
 
     .slide-counter {
       position: absolute;
@@ -100,19 +103,37 @@
       z-index: 100;
     }
 
+    .section-title {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      z-index: 100;
+      text-transform: uppercase;
+    }
+
     .dots {
       position: absolute;
       bottom: 70px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 10px;
+      gap: 6px;
       z-index: 100;
+      flex-wrap: wrap;
+      max-width: 90%;
+      justify-content: center;
     }
 
     .dot {
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.4);
       cursor: pointer;
@@ -127,100 +148,262 @@
     .dot:hover {
       background: rgba(255, 255, 255, 0.8);
     }
+
+    .continue-overlay {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 150;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .continue-overlay.active {
+      display: flex;
+    }
+
+    .continue-btn {
+      background: linear-gradient(135deg, #e94560, #c73e54);
+      color: white;
+      border: none;
+      padding: 20px 50px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 30px rgba(233, 69, 96, 0.5);
+      animation: pulse 2s infinite;
+    }
+
+    .continue-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 40px rgba(233, 69, 96, 0.7);
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 5px 30px rgba(233, 69, 96, 0.5); }
+      50% { box-shadow: 0 5px 50px rgba(233, 69, 96, 0.8); }
+    }
+
+    .continue-text {
+      color: white;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      z-index: 100;
+      border-radius: 25px;
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
   </style>
 </head>
 <body>
-  <div class="slide active">
-    <img src="EAGLE-ONE/Diapositive1.PNG" alt="Diapositive 1" class="slide-image">
+
+  <!-- SECTION 1: EAGLE-ONE -->
+  <div class="section active" id="section-eagle">
+    <div class="section-title">EAGLE ONE - Présentation</div>
+
+    <div class="slide active"><img src="EAGLE-ONE/Diapositive1.PNG" alt="Diapositive 1" class="slide-image"></div>
+    <div class="slide"><img src="EAGLE-ONE/Diapositive2.PNG" alt="Diapositive 2" class="slide-image"></div>
+    <div class="slide"><img src="EAGLE-ONE/Diapositive3.PNG" alt="Diapositive 3" class="slide-image"></div>
+    <div class="slide"><img src="EAGLE-ONE/Diapositive4.PNG" alt="Diapositive 4" class="slide-image"></div>
+    <div class="slide"><img src="EAGLE-ONE/Diapositive5.PNG" alt="Diapositive 5" class="slide-image"></div>
+    <div class="slide"><img src="EAGLE-ONE/Diapositive6.PNG" alt="Diapositive 6" class="slide-image"></div>
+    <div class="slide"><img src="EAGLE-ONE/Diapositive7.PNG" alt="Diapositive 7" class="slide-image"></div>
+    <div class="slide"><img src="EAGLE-ONE/Diapositive8.PNG" alt="Diapositive 8" class="slide-image"></div>
+    <div class="slide"><img src="EAGLE-ONE/Diapositive9.PNG" alt="Diapositive 9" class="slide-image"></div>
+    <div class="slide"><img src="EAGLE-ONE/Diapositive10.PNG" alt="Diapositive 10" class="slide-image"></div>
+
+    <button class="btn" id="prevBtn" onclick="changeSlide(-1)">❮</button>
+    <button class="btn" id="nextBtn" onclick="changeSlide(1)">❯</button>
+
+    <div class="dots" id="dots-eagle"></div>
+    <div class="slide-counter" id="counter">1 / 10</div>
+
+    <div class="continue-overlay" id="continueOverlay">
+      <p class="continue-text">Simulation du parcours d'un condamné</p>
+      <button class="continue-btn" onclick="goToParcours()">CONTINUER</button>
+    </div>
   </div>
 
-  <div class="slide">
-    <img src="EAGLE-ONE/Diapositive2.PNG" alt="Diapositive 2" class="slide-image">
+  <!-- SECTION 2: PARCOURS -->
+  <div class="section" id="section-parcours">
+    <div class="section-title">PARCOURS - Simulation</div>
+    <button class="back-btn" onclick="goToEagle()">← Retour</button>
+
+    <div class="slide active"><img src="PARCOURS/Diapositive1.PNG" alt="Parcours 1" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive2.PNG" alt="Parcours 2" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive3.PNG" alt="Parcours 3" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive4.PNG" alt="Parcours 4" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive5.PNG" alt="Parcours 5" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive6.PNG" alt="Parcours 6" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive7.PNG" alt="Parcours 7" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive8.PNG" alt="Parcours 8" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive9.PNG" alt="Parcours 9" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive10.PNG" alt="Parcours 10" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive11.PNG" alt="Parcours 11" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive12.PNG" alt="Parcours 12" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive13.PNG" alt="Parcours 13" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive14.PNG" alt="Parcours 14" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive15.PNG" alt="Parcours 15" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive16.PNG" alt="Parcours 16" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive17.PNG" alt="Parcours 17" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive18.PNG" alt="Parcours 18" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive19.PNG" alt="Parcours 19" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive20.PNG" alt="Parcours 20" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive21.PNG" alt="Parcours 21" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive22.PNG" alt="Parcours 22" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive23.PNG" alt="Parcours 23" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive24.PNG" alt="Parcours 24" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive25.PNG" alt="Parcours 25" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive26.PNG" alt="Parcours 26" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive27.PNG" alt="Parcours 27" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive28.PNG" alt="Parcours 28" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive29.PNG" alt="Parcours 29" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive30.PNG" alt="Parcours 30" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive31.PNG" alt="Parcours 31" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive32.PNG" alt="Parcours 32" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive33.PNG" alt="Parcours 33" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive34.PNG" alt="Parcours 34" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive35.PNG" alt="Parcours 35" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive36.PNG" alt="Parcours 36" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive37.PNG" alt="Parcours 37" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive38.PNG" alt="Parcours 38" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive39.PNG" alt="Parcours 39" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive40.PNG" alt="Parcours 40" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive41.PNG" alt="Parcours 41" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive42.PNG" alt="Parcours 42" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive43.PNG" alt="Parcours 43" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive44.PNG" alt="Parcours 44" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive45.PNG" alt="Parcours 45" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive46.PNG" alt="Parcours 46" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive47.PNG" alt="Parcours 47" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive48.PNG" alt="Parcours 48" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive49.PNG" alt="Parcours 49" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive50.PNG" alt="Parcours 50" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive51.PNG" alt="Parcours 51" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive52.PNG" alt="Parcours 52" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive53.PNG" alt="Parcours 53" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive54.PNG" alt="Parcours 54" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive55.PNG" alt="Parcours 55" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive56.PNG" alt="Parcours 56" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive57.PNG" alt="Parcours 57" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive58.PNG" alt="Parcours 58" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive59.PNG" alt="Parcours 59" class="slide-image"></div>
+    <div class="slide"><img src="PARCOURS/Diapositive60.PNG" alt="Parcours 60" class="slide-image"></div>
+
+    <button class="btn" id="prevBtn2" onclick="changeSlide(-1)">❮</button>
+    <button class="btn" id="nextBtn2" onclick="changeSlide(1)">❯</button>
+
+    <div class="dots" id="dots-parcours"></div>
+    <div class="slide-counter" id="counter2">1 / 60</div>
   </div>
-
-  <div class="slide">
-    <img src="EAGLE-ONE/Diapositive3.PNG" alt="Diapositive 3" class="slide-image">
-  </div>
-
-  <div class="slide">
-    <img src="EAGLE-ONE/Diapositive4.PNG" alt="Diapositive 4" class="slide-image">
-  </div>
-
-  <div class="slide">
-    <img src="EAGLE-ONE/Diapositive5.PNG" alt="Diapositive 5" class="slide-image">
-  </div>
-
-  <div class="slide">
-    <img src="EAGLE-ONE/Diapositive6.PNG" alt="Diapositive 6" class="slide-image">
-  </div>
-
-  <div class="slide">
-    <img src="EAGLE-ONE/Diapositive7.PNG" alt="Diapositive 7" class="slide-image">
-  </div>
-
-  <div class="slide">
-    <img src="EAGLE-ONE/Diapositive8.PNG" alt="Diapositive 8" class="slide-image">
-  </div>
-
-  <div class="slide">
-    <img src="EAGLE-ONE/Diapositive9.PNG" alt="Diapositive 9" class="slide-image">
-  </div>
-
-  <div class="slide">
-    <img src="EAGLE-ONE/Diapositive10.PNG" alt="Diapositive 10" class="slide-image">
-  </div>
-
-  <button class="btn" id="prevBtn" onclick="changeSlide(-1)">❮</button>
-  <button class="btn" id="nextBtn" onclick="changeSlide(1)">❯</button>
-
-  <div class="dots">
-    <span class="dot active" onclick="goToSlide(0)"></span>
-    <span class="dot" onclick="goToSlide(1)"></span>
-    <span class="dot" onclick="goToSlide(2)"></span>
-    <span class="dot" onclick="goToSlide(3)"></span>
-    <span class="dot" onclick="goToSlide(4)"></span>
-    <span class="dot" onclick="goToSlide(5)"></span>
-    <span class="dot" onclick="goToSlide(6)"></span>
-    <span class="dot" onclick="goToSlide(7)"></span>
-    <span class="dot" onclick="goToSlide(8)"></span>
-    <span class="dot" onclick="goToSlide(9)"></span>
-  </div>
-
-  <div class="slide-counter" id="counter">1 / 10</div>
 
   <script>
+    let currentSection = 'eagle';
     let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dot');
-    const counter = document.getElementById('counter');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const totalSlides = slides.length;
+    let slides, dots, counter, prevBtn, nextBtn, totalSlides;
+
+    function initSection(section) {
+      currentSection = section;
+      currentSlide = 0;
+
+      if (section === 'eagle') {
+        slides = document.querySelectorAll('#section-eagle .slide');
+        dots = document.getElementById('dots-eagle');
+        counter = document.getElementById('counter');
+        prevBtn = document.getElementById('prevBtn');
+        nextBtn = document.getElementById('nextBtn');
+        totalSlides = 10;
+      } else {
+        slides = document.querySelectorAll('#section-parcours .slide');
+        dots = document.getElementById('dots-parcours');
+        counter = document.getElementById('counter2');
+        prevBtn = document.getElementById('prevBtn2');
+        nextBtn = document.getElementById('nextBtn2');
+        totalSlides = 60;
+      }
+
+      // Generate dots
+      dots.innerHTML = '';
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('span');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => goToSlide(i);
+        dots.appendChild(dot);
+      }
+
+      showSlide(0);
+    }
 
     function showSlide(index) {
       slides.forEach(slide => slide.classList.remove('active'));
-      dots.forEach(dot => dot.classList.remove('active'));
+      const allDots = dots.querySelectorAll('.dot');
+      allDots.forEach(dot => dot.classList.remove('active'));
 
       slides[index].classList.add('active');
-      dots[index].classList.add('active');
+      allDots[index].classList.add('active');
       counter.textContent = (index + 1) + ' / ' + totalSlides;
 
       prevBtn.style.display = index === 0 ? 'none' : 'flex';
-      nextBtn.style.display = index === totalSlides - 1 ? 'none' : 'flex';
+      
+      if (currentSection === 'eagle' && index === totalSlides - 1) {
+        nextBtn.style.display = 'none';
+        document.getElementById('continueOverlay').classList.add('active');
+      } else {
+        nextBtn.style.display = index === totalSlides - 1 ? 'none' : 'flex';
+        if (currentSection === 'eagle') {
+          document.getElementById('continueOverlay').classList.remove('active');
+        }
+      }
     }
 
     function changeSlide(direction) {
       currentSlide += direction;
-      
       if (currentSlide < 0) currentSlide = 0;
       if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
-      
       showSlide(currentSlide);
     }
 
     function goToSlide(index) {
       currentSlide = index;
       showSlide(currentSlide);
+    }
+
+    function goToParcours() {
+      document.getElementById('section-eagle').classList.remove('active');
+      document.getElementById('section-parcours').classList.add('active');
+      initSection('parcours');
+    }
+
+    function goToEagle() {
+      document.getElementById('section-parcours').classList.remove('active');
+      document.getElementById('section-eagle').classList.add('active');
+      initSection('eagle');
     }
 
     // Keyboard navigation
@@ -233,7 +416,7 @@
     });
 
     // Initialize
-    showSlide(0);
+    initSection('eagle');
   </script>
 </body>
 </html>
